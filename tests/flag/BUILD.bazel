@@ -288,6 +288,16 @@ cuda_library_flag_test(
     target_under_test = "@rules_cuda_examples//basic:kernel",
 )
 
+# dlto flag for linker should always be enabled
+cuda_library_flag_test(
+    name = "cuda_library_dlto_flag_link_test",
+    action_mnemonic = "CudaDeviceLink",
+    contain_flags = [
+        "-dlto",
+    ],
+    target_under_test = "@rules_cuda_examples//basic:kernel",
+)
+
 ######################
 # Tests with -gencode
 ######################

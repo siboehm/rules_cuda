@@ -48,8 +48,7 @@ def _compiler_device_link(
         objects,
         common,
         pic = False,
-        rdc = False,
-        dlto = False):
+        rdc = False):
     """perform compiler supported native device link, return a dlink-ed object file"""
     if not rdc:
         fail("device link is only meaningful on building relocatable device code")
@@ -79,6 +78,7 @@ def _compiler_device_link(
     args = actions.args()
     args.add_all(cmd)
     args.add_all(objects)
+    args.add_all(["-dlto"])
 
     actions.run(
         executable = cuda_compiler,
@@ -98,8 +98,7 @@ def _wrapper_device_link(
         objects,
         common,
         pic = False,
-        rdc = False,
-        dlto = False):
+        rdc = False):
     """perform bazel macro supported device link, return a dlink-ed object file"""
     if not rdc:
         fail("device link is only meaningful on building relocatable device code")
